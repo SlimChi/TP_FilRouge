@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href='../css/styles.css' type="text/css">
+{% endblock %}
+
+{% block body %}
+
+	{% if app.user %}
+		<div class="d-flex justify-content-center w-100" style="position:absolute; top:50%;">
+			{% if is_granted("ROLE_ADMIN") %}
+				<h1 class="wbkg text-center">Welcome administrator!</h1>
+			{% else %}
+				<h1 class="wbkg text-center">Welcome user!</h1>
+			{% endif %}
+		</div>
+		<div class="d-flex justify-content-center w-100" style="position:relative; top:50%;">
+			<h1 class="wbkg text-center">Please choose an operation in the navbar.</h1>
+		</div>
+	{% else %}
+		<div class="d-flex justify-content-center w-100" style="position:absolute; top:50%;">
+			<h1 class="rbkg">You are not logged in.</h1>
+		</div>
+		<div class="d-flex justify-content-center w-100" style="position:relative; top:50%;">
+			<a href="/login" class="btn btn-primary btn-lg">Login</a>
+		</div>
+	{% endif %}
+{% endblock %}

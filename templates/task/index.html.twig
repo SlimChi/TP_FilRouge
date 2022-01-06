@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task index{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href='../../css/styles.css' type="text/css">
+{% endblock %}
+
+{% block body %}
+    <h1>Task index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TaskId</th>
+                <th>Name</th>
+                <th>LastName</th>
+                <th>Address</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.taskId }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.lastName }}</td>
+                <td>{{ task.address }}</td>
+                <td>{{ task.price }}</td>
+                <td>{{ task.description }}</td>
+                <td>
+                    <a href="{{ path('task_show', {'id': task.id}) }}">show</a>
+                    <a href="{{ path('task_edit', {'id': task.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ app.user }}/new">Create new</a>
+{% endblock %}
