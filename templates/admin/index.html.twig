@@ -9,7 +9,8 @@
 {% block body %}
     <h1 class="text-center wbkg">User index</h1>
 
-    <table class="table wbkg">
+<div class="tabby" style="padding:10px;display:table;">
+    <table class="table">
         <thead>
             <tr>
                 <th>Username</th>
@@ -24,7 +25,7 @@
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-outline-primary">Show</a>
+                    <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-outline-dark">Show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-outline-info">Edit</a>
                 </td>
             </tr>
@@ -35,6 +36,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+    </div>
+<div class="tabby">
     <a href="{{ path('user_new') }}" class="btn btn-success btn-lg">Create new</a>
+    </div>
 {% endblock %}

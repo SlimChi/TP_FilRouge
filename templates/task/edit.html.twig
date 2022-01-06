@@ -11,7 +11,7 @@
 
     {{ include('task/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('task_index') }}">back to list</a>
+    <a href="/tasks/{{ app.user }}">back to list</a>
 
     {{ include('task/_delete_form.html.twig') }}
 {% endblock %}
