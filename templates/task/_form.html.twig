@@ -1,0 +1,88 @@
+{{ form_start(form) }}
+<main>
+<div class="tabby" style="margin:auto; width:320px">
+	<table>
+		<tr>
+			<td>
+				<label for="task_name" class="required">Name</label>
+			</td>
+			<td><input type="text" id="task_name" name="task[name]" required="required" maxlength="255"></td>
+		</tr>
+		<tr>
+			<td>
+				<label for="task_lastName" class="required">Last name</label>
+			</td>
+			<td><input type="text" id="task_lastName" name="task[lastName]" required="required" maxlength="255"></td>
+		</tr>
+		<tr>
+			<td>
+				<label for="task_address" class="required">Address</label>
+			</td>
+			<td>
+               <input type="text" list="addresses" id="task_address" name="registration[address]" required="required" maxlength="255" />
+            </td>
+            <datalist id='addresses'></datalist>
+		</tr>
+		<tr>
+			<td>
+				<label for="task_price" class="required">Price</label>
+			</td>
+			<td><input type="text" id="task_price" name="task[price]" required="required" maxlength="255"></td>
+		</tr>
+		<tr>
+			<td>
+				<label for="task_description" class="required">Description</label>
+			</td>
+			<td><input type="text" id="task_description" name="task[description]" required="required" maxlength="255"></td>
+		</tr>
+	</table>
+
+	{{form_row(form._token)}}
+	<div>
+		<button class="btn btn-success">{{ button_label|default('Save') }}</button>
+	</div>
+	{{ form_end(form, {'render_rest': false}) }}
+</main>
+
+<script type="text/javascript">
+// Make a delay function for input
+function delay(callback, ms) {
+var timer = 0;
+return function () {
+var context = this,
+args = arguments;
+clearTimeout(timer);
+timer = setTimeout(function () {
+    callback.apply(context, args);
+        }, ms || 0);
+    };
+}
+
+// Wait for document to finish loading and then wait 500 ms after finishing to type to send data through GET to website.
+$(document).ready(function () {
+    $("#task_address").on("keyup", delay(function () {
+        var val = this.value; // get the input value here.
+        $.ajax({
+        type: "GET",
+        url: "https://api-adresse.data.gouv.fr/search/",
+        data: {
+        q: val, // this is the user input value
+        type: 'housenumber', // this is to specify what type of query type we want
+        limit: '5' // limit results to this amount of answers.
+        }, // use data object to send as parameters rather than string.
+        success: function (results) { // create option for each label result
+    $('#addresses').empty();
+        for (var i = 0; i < results.features.length; i++) {
+            $('#addresses').append('<option>' + results.features[i].properties.label + '</option>');
+            }
+
+
+},
+        error: function (XMLHttpRequest, textStatus, errorThrown) { // log any error code, the error text and error location.
+            console.log("Error: " + textStatus + " HttpStatus: " + XMLHttpRequest.status + " " + errorThrown + "\n");
+                }
+            });
+        }, 500));
+    });
+</script>
+

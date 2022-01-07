@@ -1,0 +1,56 @@
+html,body {
+  background-image: url("../img/bkg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #4A7B9D;
+  background-size:auto;
+  height: 100%;
+}
+.navcolor {
+  background-color: #54577C ;
+}
+
+.divcen {
+  text-align: center;
+}
+
+.wbkg {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.rbkg {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+  color: rgb(202, 47, 47);
+}
+
+.bbkg {
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  padding: 10px;
+  width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.wbkg {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.tabby {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  width: 90%;
+  text-align: center;
+}
+
+.btncen {
+  margin: auto;
+}

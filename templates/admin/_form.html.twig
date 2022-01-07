@@ -1,0 +1,36 @@
+<div class="tabby">
+	{{ form_start(form) }}
+    <div class="tabby" style="margin:auto; width:320px">
+	<table>
+		<tr>
+			<td><label for="user_username" class="required" style="text-align: right">Username</label></td>
+			<td><input type="text" id="user_username" name="user[username]" required="required" maxlength="180"></td>
+		</tr>
+		<tr>
+			<td>
+				<label for="user_plainPassword" class="required" style="text-align: right">Plain password</label>
+			</td>
+			<td><input type="password" id="user_plainPassword" name="user[plainPassword]" required="required" autocomplete="new-password"></td>
+		</tr>
+	</table>
+    </div>
+	<div class="bbkg">
+		<label class="required">Roles</label>
+		{# <div id="user_roles_div">
+			<select id="user_roles">
+				<option value="">--Please choose an option--</option>
+				<option id="user_roles_0" name="user[roles][]" value="ROLE_USER_NOVICE">Novice</option>
+				<option id="user_roles_1" name="user[roles][]" value="ROLE_USER">Proffessional</option>
+				<option id="user_roles_2" name="user[roles][]" value="ROLE_ADMIN">Expert - Admin</option>
+			</select>
+		</div> #}
+		<div id="user_roles">
+					<input type="checkbox" id="user_roles_0" name="user[roles][]" value="ROLE_USER_NOVICE" checked="checked"><label for="user_roles_0">Novice</label>
+					<input type="checkbox" id="user_roles_1" name="user[roles][]" value="ROLE_USER"><label for="user_roles_1">Senior</label>
+					<input type="checkbox" id="user_roles_2" name="user[roles][]" value="ROLE_ADMIN"><label for="user_roles_2">Administrator</label>
+				</div>
+			</div>
+		<button class="btn btn-success">Save</button>
+		{{ form_row(form._token) }}
+		{{ form_end(form, {'render_rest': false}) }}
+	</div>

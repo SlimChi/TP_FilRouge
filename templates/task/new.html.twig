@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Task{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href='../../css/styles.css' type="text/css">
+{% endblock %}
+
+{% block body %}
+    <h1 class="wbkg text-center">Create new Task</h1>
+
+    {{ include('task/_form.html.twig') }}
+
+    <a href="/tasks/{{ app.user }}" class="btn btn-success">Back to list</a>
+{% endblock %}
