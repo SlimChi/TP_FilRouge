@@ -1,38 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Task index{% endblock %}
+{% block title %}Task index
+{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href='../../css/styles.css' type="text/css">
+	<link rel="stylesheet" href='../../css/styles.css' type="text/css">
 {% endblock %}
 
 {% block body %}
-    <h1>Task index</h1>
+	<h1 class="text-center wbkg">Task index</h1>
+	<div class="tabby" style="padding:10px;display:table;">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Task ID</th>
+					<th>Task Name</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for task in tasks %}
+					<tr>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Task ID</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for task in tasks %}
-            <tr>
-
-                <td>{{ task.taskId }}</td>
-                <td>{{ task.name }}</td>           <td>
-                    <a href="{{ path('task_show', {'id': task.id}) }}" class="btn btn-outline-dark">Show</a>
-                    <a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-outline-info">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">No records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ app.user }}/new" class="btn btn-success btn-lg">Create new</a>
+						<td>{{ task.taskId }}</td>
+						<td>{{ task.name }}</td>
+						<td>
+							<a href="{{ path('task_show', {'id': task.id}) }}" class="btn btn-outline-dark">Show</a>
+							<a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-outline-info">Edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8">No records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="tabby">
+		<a href="{{ app.user }}/new" class="btn btn-success btn-lg">Create new</a>
+	</div>
 {% endblock %}

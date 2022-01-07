@@ -15,21 +15,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/tasks')]
 class TaskController extends AbstractController
 {
+    #[Route('/all', name: 'task_all', methods: ['GET'])]
+    public function index(TaskRepository $taskRepository): Response
+    {
+
+        return $this->render('task/index.html.twig', [
+            'tasks' => $taskRepository->findAll(),
+        ]);
+    }
     #[Route('/{user}', name: 'task_index', methods: ['GET'])]
     public function all(TaskRepository $taskRepository): Response
     {
         $user = $this->getUser();
         return $this->render('task/index.html.twig', [
             'tasks' => $taskRepository->findByUser($user),
-        ]);
-    }
-    #[Route('/all', name: 'task_user', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN')]
-    public function index(TaskRepository $taskRepository): Response
-    {
-
-        return $this->render('task/index.html.twig', [
-            'tasks' => $taskRepository->findAll(),
         ]);
     }
 
@@ -96,6 +95,6 @@ class TaskController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('task_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('task_all', [], Response::HTTP_SEE_OTHER);
     }
 }

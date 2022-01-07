@@ -7,9 +7,9 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Create new Task</h1>
+    <h1 class="wbkg text-center">Create new Task</h1>
 
     {{ include('task/_form.html.twig') }}
 
-    <a href="/tasks/{{ app.user }}">back to list</a>
+    <a href="/tasks/{{ app.user }}" class="btn btn-success">Back to list</a>
 {% endblock %}

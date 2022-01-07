@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Task</h1>
+    <h1 class="wbkg text-center">Task</h1>
 
     <table class="table">
         <tbody>
@@ -34,9 +34,9 @@
         </tbody>
     </table>
 
-    <a href="/tasks/{{ app.user}}">back to list</a>
+    <a href="/tasks/{{ app.user}}" class="btn btn-success">Back to list</a>
 
-    <a href="{{ path('task_edit', {'id': task.id}) }}">edit</a>
+    <a href="{{ path('task_edit', {'id': task.id}) }}">Edit</a>
 
     {{ include('task/_delete_form.html.twig') }}
 {% endblock %}
